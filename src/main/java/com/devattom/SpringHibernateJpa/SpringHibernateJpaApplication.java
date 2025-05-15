@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class SpringHibernateJpaApplication {
 
@@ -18,8 +20,27 @@ public class SpringHibernateJpaApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
 //			createStudent(studentDAO);
-			readStudent(studentDAO);
+//			readStudent(studentDAO);
+
+//			getAllStudents(studentDAO);
+
+			getStudentsByLastName(studentDAO);
 		};
+	}
+
+	private void getStudentsByLastName(StudentDAO studentDAO) {
+		List<Student> students = studentDAO.findByLastName("Devattom");
+		for(Student student : students) {
+			System.out.println(student);
+		}
+	}
+
+	private void getAllStudents(StudentDAO studentDAO) {
+		List<Student> students = studentDAO.findAll();
+
+		for(Student student : students) {
+			System.out.println(student);
+		}
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
