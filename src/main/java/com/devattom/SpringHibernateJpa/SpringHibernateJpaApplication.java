@@ -24,7 +24,9 @@ public class SpringHibernateJpaApplication {
 
 //			getAllStudents(studentDAO);
 
-			getStudentsByLastName(studentDAO);
+//			getStudentsByLastName(studentDAO);
+
+			updateStudent(studentDAO);
 		};
 	}
 
@@ -61,5 +63,14 @@ public class SpringHibernateJpaApplication {
 
 	private void readStudent(StudentDAO studentDAO) {
 		System.out.println(studentDAO.findById(3));
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		System.out.println(studentDAO.findById(1));
+		Student student = studentDAO.findById(1);
+		student.setFirstName("Juan");
+		studentDAO.update(student);
+
+		System.out.println(studentDAO.findById(1));
 	}
 }
