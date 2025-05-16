@@ -26,7 +26,9 @@ public class SpringHibernateJpaApplication {
 
 //			getStudentsByLastName(studentDAO);
 
-			updateStudent(studentDAO);
+//			updateStudent(studentDAO);
+
+			deleteAllStudents(studentDAO);
 		};
 	}
 
@@ -72,5 +74,13 @@ public class SpringHibernateJpaApplication {
 		studentDAO.update(student);
 
 		System.out.println(studentDAO.findById(1));
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		studentDAO.deleteById(1);
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		studentDAO.deleteAll();
 	}
 }

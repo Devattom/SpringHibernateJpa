@@ -2,6 +2,7 @@ package com.devattom.SpringHibernateJpa.DAO;
 
 import com.devattom.SpringHibernateJpa.entity.Student;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -53,5 +54,18 @@ public class StudentDAOImpl implements StudentDAO{
     @Transactional
     public void update(Student student) {
         entityManager.merge(student);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Integer id) {
+        Student student = findById(id);
+        entityManager.remove(student);
+    }
+
+    @Override
+    @Transactional
+    public int deleteAll() {
+        return entityManager.createQuery("DELETE FROM Student").executeUpdate();
     }
 }
